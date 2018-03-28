@@ -16,7 +16,7 @@ kind: ReplicaSet
 metadata:
   name: webapp-rs
 spec:
-  replicas: 1
+  replicas: 2
   template:
     metadata:
       labels:
@@ -27,3 +27,33 @@ spec:
         image: pahud/greeting:latest
         ports:
         - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: caddy-service
+spec: 
+  selector: 
+    app: caddy-pod
+  ports:
+    - name: web
+      port: 80
+      targetPort: 2015
+  type: NodePort
+---
+apiVersion: extensions/v1beta1
+kind: ReplicaSet
+metadata:
+  name: caddy-rs
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: caddy-pod
+    spec:
+      containers:
+      - name: caddy-pod
+        image: abiosoft/caddy
+        ports:
+        - containerPort: 2015
