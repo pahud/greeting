@@ -1,0 +1,7 @@
+name: pahud's greeting app
+version: 1.0.0
+description: containerized app in golang 
+maintainers:
+	- 
+	name: Pahud Hsieh
+	twitter: pahudnet
