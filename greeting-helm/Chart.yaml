@@ -1,0 +1,3 @@
+name: greeting-helm
+version: 1.0.0
+description: simple greeting containerized app in golang 
